@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient"
+    android:padding="16dp">
+
+    <FrameLayout
+        android:id="@+id/notificationContainer"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Icon notification -->
+        <ImageView
+            android:id="@+id/ivNotification"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_notification"
+            app:tint="#FFFFFF"
+            android:contentDescription="Notification" />
+
+        <!-- Badge đỏ -->
+        <View
+            android:id="@+id/notificationBadge"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/red_circle"
+            android:visibility="gone" />
+    </FrameLayout>
+
+
+    <!-- Tên thành phố -->
+    <TextView
+        android:id="@+id/tvCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hanoi"
+        android:textSize="30sp"
+        android:textColor="#FFFFFF"
+        android:drawableLeft="@drawable/ic_location"
+        android:drawablePadding="8dp"
+        android:drawableTint="#FFFFFF"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Biểu tượng thời tiết -->
+    <ImageView
+        android:id="@+id/ivWeatherIcon"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@id/tvCity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Khung thông tin thời tiết -->
+    <LinearLayout
+        android:id="@+id/weatherInfoBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/info_box_bg"
+        android:padding="24dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/ivWeatherIcon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Today, 11 May"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="8dp"
+            android:textSize="20sp" />
+
+
+        <TextView
+            android:id="@+id/tvTemperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="29°"
+            android:textColor="#FFFFFF"
+            android:textSize="100sp" />
+
+        <TextView
+            android:id="@+id/tvWeatherStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cloudy"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            android:layout_marginTop="8dp"/>
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alignmentMode="alignMargins"
+            android:columnCount="3"
+            android:rowCount="2"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center"
+            android:columnOrderPreserved="false"
+            android:useDefaultMargins="true">
+
+            <!-- Row 1: Wind -->
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_wind"
+                app:tint="#FFFFFF"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/tvWindLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tốc độ gió  |"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:layout_row="0"
+
+                android:layout_column="1"
+                android:layout_gravity="right"/>
+
+            <TextView
+                android:id="@+id/tvWind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10 km/h"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:layout_gravity="center_vertical"/>
+
+            <!-- Row 2: Humidity -->
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_hum"
+                app:tint="#FFFFFF"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/tvHumidityLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Độ ẩm  |"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:layout_row="1"
+                android:layout_column="1"
+                android:layout_gravity="right"/>
+
+            <TextView
+                android:id="@+id/tvHumidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="54 %"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:layout_row="1"
+                android:layout_column="2"
+                android:layout_gravity="center_vertical"/>
+        </GridLayout>
+
+    </LinearLayout>
+
+    <!-- Nút Forecast -->
+    <Button
+        android:id="@+id/btnForecast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forecast Report"
+        android:backgroundTint="#FFFFFF"
+        android:textColor="#040303"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="32dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
