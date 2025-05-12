@@ -5,10 +5,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.graphics.drawable.AnimationDrawable;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.bumptech.glide.Glide;
 import com.example.weatherforecastapp.api.WeatherApiService;
@@ -25,7 +28,10 @@ public class MainActivity extends AppCompatActivity {
 
     TextView tvCity, tvDate, tvTemperature, tvWeatherStatus, tvWind, tvHumidity;
     ImageView ivNotification, ivWeatherIcon;
+    View notificationBadge;
     Button btnForecast;
+    FrameLayout notificationContainer;
+    ConstraintLayout rootLayout; // Thêm biến layout gốc
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +48,12 @@ public class MainActivity extends AppCompatActivity {
         ivNotification = findViewById(R.id.ivNotification);
         ivWeatherIcon = findViewById(R.id.ivWeatherIcon);
         btnForecast = findViewById(R.id.btnForecast);
+        notificationContainer = findViewById(R.id.notificationContainer);
+        notificationBadge = findViewById(R.id.notificationBadge);
+        rootLayout = findViewById(R.id.rootLayout);
+
+        // Luôn hiển thị red dot khi mở app
+        notificationBadge.setVisibility(View.VISIBLE);
 
         // Nhận tên thành phố từ Intent (nếu có)
         String city = getIntent().getStringExtra("CITY_NAME");
@@ -54,8 +66,12 @@ public class MainActivity extends AppCompatActivity {
         // Click để mở bản đồ chọn vị trí
         tvCity.setOnClickListener(v -> openLocationPicker());
 
-        // Hiện thông báo
-        ivNotification.setOnClickListener(v -> showNotificationPopup());
+        // Click thông báo
+        notificationContainer.setOnClickListener(v -> {
+            showNotificationPopup();
+            // Chỉ ẩn red dot khi click vào thông báo, không lưu trạng thái
+            notificationBadge.setVisibility(View.GONE);
+        });
 
         // Mở Forecast
         btnForecast.setOnClickListener(v -> openForecastReport());
@@ -69,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
         WeatherApiService apiService = retrofit.create(WeatherApiService.class);
 
-        Call<WeatherResponse> call = apiService.getForecast("da7aaf6a73cd4196a8121617251005", city, 1,"vi");
+        Call<WeatherResponse> call = apiService.getForecast("da7aaf6a73cd4196a8121617251005", city, 1, "vi");
 
         call.enqueue(new Callback<WeatherResponse>() {
             @Override
@@ -84,11 +100,14 @@ public class MainActivity extends AppCompatActivity {
                     tvWind.setText(weather.current.wind_kph + " km/h");
                     tvHumidity.setText(weather.current.humidity + "%");
 
-                    // Load icon thời tiết
-                    String iconUrl = "https:" + weather.current.condition.icon;
+                    // Load icon thời tiết rõ hơn
+                    String iconUrl = "https:" + weather.current.condition.icon.replace("64x64", "128x128");
                     Glide.with(MainActivity.this)
                             .load(iconUrl)
                             .into(ivWeatherIcon);
+
+                    // Cập nhật background theo thời gian
+                    updateBackground(weather.location.localtime);
                 }
             }
 
@@ -97,6 +116,34 @@ public class MainActivity extends AppCompatActivity {
                 t.printStackTrace();
             }
         });
+    }
+
+    private void updateBackground(String localtime) {
+        // localtime format: "yyyy-MM-dd HH:mm"
+        String[] parts = localtime.split(" ");
+        if (parts.length == 2) {
+            String timePart = parts[1];
+            String[] timeSplit = timePart.split(":");
+            int hour = Integer.parseInt(timeSplit[0]);
+
+            if (hour >= 6 && hour < 18) {
+                // Ban ngày - sử dụng animated background
+                rootLayout.setBackgroundResource(R.drawable.animated_background_day);
+                // Bắt đầu animation
+                AnimationDrawable animationDrawable = (AnimationDrawable) rootLayout.getBackground();
+                animationDrawable.setEnterFadeDuration(6000);
+                animationDrawable.setExitFadeDuration(6000);
+                animationDrawable.start();
+            } else {
+                // Ban đêm - tạo animation cho ban đêm
+                rootLayout.setBackgroundResource(R.drawable.animated_background_night);
+                // Bắt đầu animation
+                AnimationDrawable animationDrawable = (AnimationDrawable) rootLayout.getBackground();
+                animationDrawable.setEnterFadeDuration(6000);
+                animationDrawable.setExitFadeDuration(6000);
+                animationDrawable.start();
+            }
+        }
     }
 
     private void showNotificationPopup() {
@@ -113,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
     private void openLocationPicker() {
         Intent intent = new Intent(MainActivity.this, LocationPickerActivity.class);
         startActivity(intent);
-        overridePendingTransition(0, 0); // không hiệu ứng chuyển
+        overridePendingTransition(0, 0);
     }
 
     private void openForecastReport() {
