@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         // Nhận tên thành phố từ Intent (nếu có)
         String city = getIntent().getStringExtra("CITY_NAME");
         if (city == null || city.isEmpty()) {
-            city = "Hanoi"; // fallback mặc định
+            city = "Ha Noi"; // fallback mặc định
         }
 
         fetchWeather(city);
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         WeatherApiService apiService = retrofit.create(WeatherApiService.class);
 
-        Call<WeatherResponse> call = apiService.getForecast("da7aaf6a73cd4196a8121617251005", city, 1,"vi");
+        Call<WeatherResponse> call = apiService.getForecast("da7aaf6a73cd4196a8121617251005", city, 1, "vi");
 
         call.enqueue(new Callback<WeatherResponse>() {
             @Override
@@ -80,21 +80,31 @@ public class MainActivity extends AppCompatActivity {
                     tvCity.setText(weather.location.name);
                     tvDate.setText("Hôm nay, " + weather.location.localtime);
                     tvTemperature.setText(weather.current.temp_c + "°");
-                    tvWeatherStatus.setText(weather.current.condition.text);
+
+                    // Kiểm tra điều kiện trước khi truy cập
+                    if (weather.current.condition != null) {
+                        tvWeatherStatus.setText(weather.current.condition.text);
+                        String iconUrl = "https:" + weather.current.condition.icon;
+                        Glide.with(MainActivity.this)
+                                .load(iconUrl)
+                                .into(ivWeatherIcon);
+                    } else {
+                        tvWeatherStatus.setText("Không có thông tin thời tiết");
+                        ivWeatherIcon.setImageResource(R.drawable.ic_cloud_sun); // Hình ảnh mặc định
+                    }
+
                     tvWind.setText(weather.current.wind_kph + " km/h");
                     tvHumidity.setText(weather.current.humidity + "%");
-
-                    // Load icon thời tiết
-                    String iconUrl = "https:" + weather.current.condition.icon;
-                    Glide.with(MainActivity.this)
-                            .load(iconUrl)
-                            .into(ivWeatherIcon);
+                } else {
+                    // Xử lý trường hợp API trả về không thành công
+                    tvWeatherStatus.setText("Không thể lấy dữ liệu thời tiết");
                 }
             }
 
             @Override
             public void onFailure(Call<WeatherResponse> call, Throwable t) {
                 t.printStackTrace();
+                tvWeatherStatus.setText("Lỗi kết nối");
             }
         });
     }
@@ -118,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void openForecastReport() {
         Intent intent = new Intent(MainActivity.this, ForecastReportActivity.class);
+        intent.putExtra("CITY_NAME", tvCity.getText().toString());
         startActivity(intent);
     }
 }
