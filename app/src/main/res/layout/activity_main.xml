@@ -23,7 +23,7 @@
         android:id="@+id/notificationContainer"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:clickable="true"
         android:focusable="true"
@@ -65,7 +65,7 @@
         android:drawableLeft="@drawable/ic_location"
         android:drawablePadding="8dp"
         android:drawableTint="#FFFFFF"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

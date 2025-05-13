@@ -16,9 +16,9 @@
         android:layout_height="wrap_content"
         android:text="Back"
         android:drawableLeft="@drawable/ic_back"
-        android:drawablePadding="8dp"
+        android:drawablePadding="4dp"
         android:drawableTint="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="22sp"
         android:textColor="@android:color/white"
         android:layout_marginTop="20dp"
         android:layout_marginStart="18dp"
@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sep, 12"
-        android:textSize="24sp"
+        android:textSize="22sp"
         android:textColor="@android:color/white"
         android:layout_marginTop="20dp"
         app:layout_constraintTop_toTopOf="parent"
@@ -94,6 +94,7 @@
             <!-- CÁC ITEM THỜI TIẾT BÊN TRONG -->
 
             <LinearLayout
+                android:id="@+id/hourly_forecast_item1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -120,6 +121,7 @@
                     android:textSize="18sp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/hourly_forecast_item2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -146,6 +148,7 @@
                     android:textSize="18sp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/hourly_forecast_item3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -172,6 +175,7 @@
                     android:textSize="18sp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/hourly_forecast_item4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -198,6 +202,7 @@
                     android:textSize="18sp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/hourly_forecast_item5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -224,6 +229,7 @@
                     android:textSize="18sp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/hourly_forecast_item6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -250,6 +256,7 @@
                     android:textSize="18sp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/hourly_forecast_item7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -276,6 +283,7 @@
                     android:textSize="18sp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/hourly_forecast_item8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -302,6 +310,7 @@
                     android:textSize="18sp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/hourly_forecast_item9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -328,6 +337,7 @@
                     android:textSize="18sp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/hourly_forecast_item10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -354,6 +364,7 @@
                     android:textSize="18sp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/hourly_forecast_item11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -380,6 +391,7 @@
                     android:textSize="18sp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/hourly_forecast_item12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -407,6 +419,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/hourly_forecast_item13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -431,7 +444,9 @@
                     android:text="12:00"
                     android:textColor="@android:color/white"
                     android:textSize="18sp" />
-            </LinearLayout><LinearLayout
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/hourly_forecast_item14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -458,6 +473,7 @@
                 android:textSize="18sp" />
         </LinearLayout>
             <LinearLayout
+                android:id="@+id/hourly_forecast_item15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -484,6 +500,7 @@
                     android:textSize="18sp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/hourly_forecast_item16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -510,6 +527,7 @@
                     android:textSize="18sp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/hourly_forecast_item17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -536,6 +554,7 @@
                     android:textSize="18sp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/hourly_forecast_item18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -562,6 +581,7 @@
                     android:textSize="18sp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/hourly_forecast_item19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -588,6 +608,7 @@
                     android:textSize="18sp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/hourly_forecast_item20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -614,6 +635,7 @@
                     android:textSize="18sp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/hourly_forecast_item21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -640,6 +662,7 @@
                     android:textSize="18sp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/hourly_forecast_item22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -666,6 +689,7 @@
                     android:textSize="18sp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/hourly_forecast_item23"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -692,6 +716,7 @@
                     android:textSize="18sp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/hourly_forecast_item24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -756,6 +781,7 @@
             android:orientation="vertical">
             <!-- Fake Data -->
             <LinearLayout
+                android:id="@+id/day1_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -786,6 +812,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/day2_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -816,6 +843,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/day3_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -846,6 +874,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/day4_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -876,6 +905,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/day5_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -906,6 +936,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/day6_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -936,66 +967,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="14dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Sep 13"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp" />
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/ic_cloud_sun" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="21°C"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="14dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Sep 13"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp" />
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/ic_cloud_sun" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="21°C"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-            <LinearLayout
+                android:id="@+id/day7_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
