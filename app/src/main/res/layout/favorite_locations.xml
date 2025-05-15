@@ -10,8 +10,11 @@
         android:layout_marginStart="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_love"
+        android:drawablePadding="8dp"
+        android:drawableTint="#FFFFFF"
         android:text="Địa điểm yêu thích"
-        android:textSize="32sp"
+        android:textSize="30sp"
         android:textColor="@color/white"
         android:layout_marginBottom="8dp" />
 
