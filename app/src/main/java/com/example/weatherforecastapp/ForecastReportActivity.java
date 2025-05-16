@@ -52,7 +52,11 @@ public class ForecastReportActivity extends AppCompatActivity {
 
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_forecast_report);
-
+        String cityName = getIntent().getStringExtra("CITY_NAME");
+        if (cityName != null) {
+            // Sử dụng cityName để gọi API dự báo thời tiết cho thành phố này
+            fetchForecast(cityName);
+        }
         // Tìm TextView hiển thị ngày
         dateLabel = findViewById(R.id.date_label);
 
@@ -112,6 +116,94 @@ public class ForecastReportActivity extends AppCompatActivity {
                 animationDrawable.start();
             }
         }
+    }
+    private void fetchForecast(String cityName) {
+        OkHttpClient client = new OkHttpClient();
+
+        String url = "https://api.weatherapi.com/v1/forecast.json?key=" + API_KEY + "&q=" + cityName + "&days=7&aqi=no&alerts=no";
+
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e(TAG, "Lỗi khi gọi API dự báo thời tiết: " + e.getMessage());
+                runOnUiThread(() -> {
+                    Toast.makeText(ForecastReportActivity.this, "Không thể kết nối đến máy chủ thời tiết", Toast.LENGTH_SHORT).show();
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful() && response.body() != null) {
+                    String jsonData = response.body().string();
+                    try {
+                        // Phân tích dữ liệu JSON
+                        JsonObject jsonObject = JsonParser.parseString(jsonData).getAsJsonObject();
+                        JsonArray forecastDays = jsonObject.getAsJsonObject("forecast").getAsJsonArray("forecastday");
+
+                        List<DailyForecast> forecasts = new ArrayList<>();
+                        List<HourlyForecast> hourlyForecasts = new ArrayList<>();
+
+                        // Lấy dữ liệu cho 7 ngày
+                        for (int i = 0; i < forecastDays.size(); i++) {
+                            JsonObject dayForecast = forecastDays.get(i).getAsJsonObject();
+                            String date = dayForecast.get("date").getAsString();
+                            JsonObject dayInfo = dayForecast.getAsJsonObject("day");
+                            double avgTemp = dayInfo.get("avgtemp_c").getAsDouble();
+                            String iconUrl = "https:" + dayInfo.getAsJsonObject("condition").get("icon").getAsString();
+
+                            // Định dạng lại ngày tháng (từ YYYY-MM-DD thành MMM DD)
+                            String formattedDate = formatDate(date);
+
+                            // Tạo đối tượng dự báo
+                            DailyForecast forecast = new DailyForecast(formattedDate, iconUrl, String.format("%.1f°C", avgTemp));
+                            forecasts.add(forecast);
+
+                            // Nếu là ngày đầu tiên, lấy dữ liệu dự báo theo giờ
+                            if (i == 0) {
+                                JsonArray hoursArray = dayForecast.getAsJsonArray("hour");
+                                for (int j = 0; j < hoursArray.size(); j++) {
+                                    JsonObject hourData = hoursArray.get(j).getAsJsonObject();
+                                    String time = hourData.get("time").getAsString();
+                                    double tempC = hourData.get("temp_c").getAsDouble();
+                                    String hourIconUrl = "https:" + hourData.getAsJsonObject("condition").get("icon").getAsString();
+
+                                    // Chỉ lấy giờ từ chuỗi thời gian (định dạng: yyyy-MM-dd HH:mm)
+                                    String hourOnly = time.substring(11, 16);
+
+                                    HourlyForecast hourlyForecast = new HourlyForecast(
+                                            hourOnly,
+                                            hourIconUrl,
+                                            String.format("%.0f°C", tempC)
+                                    );
+                                    hourlyForecasts.add(hourlyForecast);
+                                }
+                            }
+                        }
+
+                        // Cập nhật UI trên main thread
+                        runOnUiThread(() -> {
+                            updateUI(forecasts);
+                            updateHourlyForecast(hourlyForecasts);
+                        });
+
+                    } catch (Exception e) {
+                        Log.e(TAG, "Lỗi khi xử lý dữ liệu JSON dự báo: " + e.getMessage());
+                        runOnUiThread(() -> {
+                            Toast.makeText(ForecastReportActivity.this, "Lỗi khi xử lý dữ liệu dự báo thời tiết", Toast.LENGTH_SHORT).show();
+                        });
+                    }
+                } else {
+                    Log.e(TAG, "Phản hồi không thành công: " + response.code());
+                    runOnUiThread(() -> {
+                        Toast.makeText(ForecastReportActivity.this, "Không thể lấy dữ liệu dự báo thời tiết", Toast.LENGTH_SHORT).show();
+                    });
+                }
+            }
+        });
     }
 
     private void fetchWeatherData() {

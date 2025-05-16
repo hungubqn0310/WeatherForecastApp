@@ -52,6 +52,18 @@
             android:visibility="gone" />
     </FrameLayout>
 
+    <ImageView
+        android:id="@+id/ivLove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:padding="16dp"
+        android:src="@drawable/ic_love_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="Love Icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/notificationContainer" />
 
     <!-- Tên thành phố -->
     <TextView
@@ -120,9 +132,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:textAlignment="center"
             android:text="Cloudy"
             android:textColor="#FFFFFF"
-            android:textSize="30sp" />
+            android:textSize="24sp" />
 
         <GridLayout
             android:layout_width="wrap_content"
