@@ -52,6 +52,18 @@
             android:visibility="gone" />
     </FrameLayout>
 
+    <ImageView
+        android:id="@+id/ivLove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:padding="16dp"
+        android:src="@drawable/ic_love_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="Love Icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/notificationContainer" />
 
     <!-- Tên thành phố -->
     <TextView
@@ -74,8 +86,7 @@
         android:id="@+id/ivWeatherIcon"
         android:layout_width="200dp"
         android:layout_height="200dp"
-
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/tvCity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -85,24 +96,25 @@
         android:id="@+id/weatherInfoBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/info_box_bg"
-        android:padding="24dp"
-        android:gravity="center"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintTop_toBottomOf="@id/ivWeatherIcon"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/info_box_bg"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp"
+        app:layout_constraintBottom_toTopOf="@id/btnForecast"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivWeatherIcon">
 
         <TextView
             android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="Today, 11 May"
             android:textColor="#FFFFFF"
-            android:layout_marginTop="8dp"
             android:textSize="20sp" />
 
 
@@ -119,86 +131,87 @@
             android:id="@+id/tvWeatherStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAlignment="center"
             android:text="Cloudy"
             android:textColor="#FFFFFF"
-            android:textSize="30sp"
-            android:layout_marginTop="8dp"/>
+            android:textSize="24sp" />
 
         <GridLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
             android:alignmentMode="alignMargins"
             android:columnCount="3"
-            android:rowCount="2"
-            android:layout_marginTop="8dp"
-            android:layout_gravity="center"
             android:columnOrderPreserved="false"
+            android:rowCount="2"
             android:useDefaultMargins="true">
 
             <!-- Row 1: Wind -->
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_wind"
-                app:tint="#FFFFFF"
                 android:layout_row="0"
                 android:layout_column="0"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:src="@drawable/ic_wind"
+                app:tint="#FFFFFF" />
 
             <TextView
                 android:id="@+id/tvWindLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tốc độ gió  |"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
                 android:layout_row="0"
-
                 android:layout_column="1"
-                android:layout_gravity="right"/>
+                android:layout_gravity="right"
+                android:text="Tốc độ gió  |"
+
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/tvWind"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="10 km/h"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_gravity="center_vertical"/>
+                android:layout_gravity="center_vertical"
+                android:text="10 km/h"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
 
             <!-- Row 2: Humidity -->
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_hum"
-                app:tint="#FFFFFF"
                 android:layout_row="1"
                 android:layout_column="0"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:src="@drawable/ic_hum"
+                app:tint="#FFFFFF" />
 
             <TextView
                 android:id="@+id/tvHumidityLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Độ ẩm  |"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
                 android:layout_row="1"
                 android:layout_column="1"
-                android:layout_gravity="right"/>
+                android:layout_gravity="right"
+                android:text="Độ ẩm  |"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/tvHumidity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="54 %"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
                 android:layout_row="1"
                 android:layout_column="2"
-                android:layout_gravity="center_vertical"/>
+                android:layout_gravity="center_vertical"
+                android:text="54 %"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
         </GridLayout>
 
     </LinearLayout>
@@ -208,11 +221,39 @@
         android:id="@+id/btnForecast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Forecast Report"
         android:backgroundTint="#FFFFFF"
+        android:text="Forecast Report"
         android:textColor="#040303"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp"
+        app:layout_constraintBottom_toTopOf="@id/btnMyLocation"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="32dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weatherInfoBox" />
+
+    <Button
+        android:id="@+id/btnMyLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFFFFF"
+        android:text="My Location"
+        android:textColor="#040303"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@id/tvSlide"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnForecast" />
+
+    <TextView
+        android:id="@+id/tvSlide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="← Slide To Favorite Locations"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        android:letterSpacing="0.05"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/btnMyLocation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

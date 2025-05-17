@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Trạng thái được chọn (kích hoạt) -->
+    <item android:state_selected="true">
+        <bitmap android:src="@drawable/ic_love_filled" android:tint="#FFFFFF" />
+    </item>
+    <!-- Trạng thái mặc định (chưa kích hoạt) -->
+    <item>
+        <bitmap android:src="@drawable/ic_love" android:tint="#FFFFFF" />
+    </item>
+</selector>

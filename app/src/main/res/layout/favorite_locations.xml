@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/animated_background_day">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_love"
+        android:drawablePadding="8dp"
+        android:drawableTint="#FFFFFF"
+        android:text="Địa điểm yêu thích"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="8dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="720dp"
+        android:scrollbars="none"
+        android:importantForAccessibility="no">
+
+        <LinearLayout
+            android:id="@+id/locationContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tvSlide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="0.05"
+        android:text="Slide To Home →"
+        android:textColor="#333333"
+        android:textSize="16sp" />
+</LinearLayout>

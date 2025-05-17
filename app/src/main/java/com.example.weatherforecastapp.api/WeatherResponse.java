@@ -7,21 +7,35 @@ public class WeatherResponse {
     public Current current;
     public Forecast forecast;
 
-    public class Location {
+    public static class Location {
         public String name;
         public String localtime;
     }
 
-    public class Current {
+    public static class Current {
         public double temp_c;
         public Condition condition;
         public double wind_kph;
         public int humidity;
     }
 
-    public class Condition {
+    public static class Condition {
         public String text;
         public String icon;
+        public int code;
+    }
+
+    public static class Forecast {
+        public List<ForecastDay> forecastday;
+    }
+
+    public static class ForecastDay {
+        public Day day;
+    }
+
+    public static class Day {
+        public double maxtemp_c;
+        public double mintemp_c;
     }
 
     public class Forecast {
