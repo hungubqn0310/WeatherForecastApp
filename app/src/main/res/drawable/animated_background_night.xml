@@ -1,0 +1,8 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+
+    <item android:drawable="@drawable/gradient_night_1" android:duration="6000" />
+    <item android:drawable="@drawable/gradient_night_2" android:duration="6000" />
+    <item android:drawable="@drawable/gradient_night_3" android:duration="6000" />
+    <item android:drawable="@drawable/gradient_night_4" android:duration="6000" />
+</animation-list>
