@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private static final String PREFS_NAME = "FavoriteLocationsPrefs";
     private static final String KEY_FAVORITE_CITIES = "favoriteCities";
+    private static final String PREFS_APP = "WeatherAppPrefs";
     TextView tvCity, tvDate, tvTemperature, tvWeatherStatus, tvWind, tvHumidity;
     ImageView ivNotification, ivWeatherIcon;
     ImageView ivLove;
@@ -374,19 +375,23 @@ public class MainActivity extends AppCompatActivity {
             String[] timeSplit = timePart.split(":");
             int hour = Integer.parseInt(timeSplit[0]);
 
+            SharedPreferences appPrefs = getSharedPreferences(PREFS_APP, MODE_PRIVATE);
+            SharedPreferences.Editor editor = appPrefs.edit();
+            AnimationDrawable animationDrawable;
+
             if (hour >= 6 && hour < 18) {
                 rootLayout.setBackgroundResource(R.drawable.animated_background_day);
-                AnimationDrawable animationDrawable = (AnimationDrawable) rootLayout.getBackground();
-                animationDrawable.setEnterFadeDuration(6000);
-                animationDrawable.setExitFadeDuration(6000);
-                animationDrawable.start();
+                editor.putBoolean("isDayBackground", true);
             } else {
                 rootLayout.setBackgroundResource(R.drawable.animated_background_night);
-                AnimationDrawable animationDrawable = (AnimationDrawable) rootLayout.getBackground();
-                animationDrawable.setEnterFadeDuration(6000);
-                animationDrawable.setExitFadeDuration(6000);
-                animationDrawable.start();
+                editor.putBoolean("isDayBackground", false);
             }
+            editor.apply();
+
+            animationDrawable = (AnimationDrawable) rootLayout.getBackground();
+            animationDrawable.setEnterFadeDuration(6000);
+            animationDrawable.setExitFadeDuration(6000);
+            animationDrawable.start();
         }
     }
 
